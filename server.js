@@ -38,7 +38,7 @@ app.post("/api/notes", (req, res) => {
         fileData.push(newNote);
 
         const newData = JSON.stringify(fileData);
-        
+
         fs.writeFile(`db/db.json`, newData, (err) => err
         ? console.log(err)
         : console.log(`a new note is added with " ${newNote.title} " title.`)
@@ -48,8 +48,15 @@ app.post("/api/notes", (req, res) => {
       
     })
 
-    //notes.push(newNote);
-    //updateDb();
+   const response = {
+    status: "success",
+    body: newNote,
+   }
+
+   console.log(response);
+   res.status(201).json(response);
+   
+
     
 });
 
