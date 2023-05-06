@@ -29,34 +29,38 @@ app.get('/api/notes', (req, res) =>
 );
 
 app.post("/api/notes", (req, res) => {
-    const newNote = req.body;
+  const { title, text } = req.body;
+  if (title ==! "" && text ==! "") {
+    const newNote = {title, text};
+
     fs.readFile(`./db/db.json`, (err,data) => {
       if (err) {
         console.log(err);
       } else {
         const fileData = JSON.parse(data);
         fileData.push(newNote);
-
+  
         const newData = JSON.stringify(fileData);
-
+  
         fs.writeFile(`db/db.json`, newData, (err) => err
         ? console.log(err)
         : console.log(`a new note is added with " ${newNote.title} " title.`)
         )
-
       }
-      
-    })
+    });
 
    const response = {
     status: "success",
     body: newNote,
    }
+   
 
    console.log(response);
    res.status(201).json(response);
-   
 
+  } else {
+    res.status(500).json('Error in posting your note');
+  }
     
 });
 
