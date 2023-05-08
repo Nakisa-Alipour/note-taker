@@ -59,7 +59,7 @@ Contributions to Note Taker are welcome! Please submit a pull request or contact
 
 
 ## Link for this application:
-https://nakisa-alipour.github.io/note-taker/
+https://note-taker-heroku-app.herokuapp.com/
 
 
 
